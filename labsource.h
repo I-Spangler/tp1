@@ -9,19 +9,7 @@ typedef struct {
     int sy; // Coordenada y da espada
     int **mapa; // vari�vel para armazenar o mapa (matriz)
 } Labirinto;
-typedef struct {
-    int x;
-    int y;
-}Ponto;
-typedef struct Pilha{
-    Ponto coord;
-    struct Pilha *prox;
-}Pilha;
-void criaPilha(Pilha **P);
-Ponto Peek(Pilha** P);
-void Push(Pilha **P, Ponto q);
-void Pop(Pilha **P);
-void freePilha(Pilha **P);
+
 Labirinto* LeLabirinto(char * entrada);
 int CaminhaLabirintoRecursivo(Labirinto* lab, int x, int y, int ** sol);
 int CaminhaLabirintoIterativo(Labirinto* lab, int ** sol);

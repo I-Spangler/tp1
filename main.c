@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "labsource.h"
+#include"pilha.h"
 
 int main(int argc, char *argv[]){
 
