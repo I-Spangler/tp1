@@ -6,7 +6,7 @@ int main(int argc, char *argv[]){
 
   Labirinto* lab;
   lab  = LeLabirinto(argv[1]);
-  int **sol, i, j;
+  int **sol, i, j; //sol = matriz da solução
   sol = calloc(lab->N, (sizeof(int*)));
   for(i = 0; i<lab->N; i++){
       sol[i] = calloc(lab->N, (sizeof(int)));
@@ -42,6 +42,7 @@ int main(int argc, char *argv[]){
         fprintf(fp, "0");
       }
   }
+  //libera tudo
   for(i = 0; i<lab->N; i++){
     free(lab->mapa[i]);
     free(sol[i]);
