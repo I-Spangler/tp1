@@ -175,7 +175,7 @@ int CaminhaLabirintoIterativo(Labirinto* lab, int ** sol){
         if(ncaminhos > 1){ //se for bifurcação marca o lugar pra visitar depois
         	Push(&hold, q);
         }
-    	if(ncaminhos = 0){  //se encontrar um beco sem saída
+    	if(!ncaminhos){  //se encontrar um beco sem saída
           if(!(hold)){  //e não houver mais encruzilhadas pra visitar
         	freePilha(&hold);
         	freePilha(&P);
