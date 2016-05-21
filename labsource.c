@@ -139,52 +139,52 @@ int CaminhaLabirintoIterativo(Labirinto* lab, int ** sol){
   Pilha *P; //a linha salvadora do labirinto
   Pilha *hold; //pilha de lugares onde teseu encontra bifurcações
   int ncaminhos; //numero de caminhos a partir de um ponto
-	Ponto q;   //ponto atual
-	q.x = lab->x; //início
-	q.y = lab->y;
+  Ponto q;   //ponto atual
+  q.x = lab->x; //início
+  q.y = lab->y;
   criaPilha(&P); criaPilha(&hold);
-	Push(&P, q); //prende o fio no início
-     while(q.x != lab->sx || q.y != lab->sy){ //enquanto não chegar ao fim
-    		q = Peek(&P);  //o ponto atual é a ponta do fio
-    		lab->mapa[q.x][q.y] = 1;  //marca este ponto como já visitado no mapa
+  Push(&P, q); //prende o fio no início
+  while(q.x != lab->sx || q.y != lab->sy){ //enquanto não chegar ao fim
+  	q = Peek(&P);  //o ponto atual é a ponta do fio
+    	lab->mapa[q.x][q.y] = 1;  //marca este ponto como já visitado no mapa
         ncaminhos = 0;
         if(q.y+1 < lab->N && lab->mapa[q.x][q.y+1] == 0){  //teseu procura um caminho a direita
-      			Ponto q1 = q;
-      			q1.y = q.y+1;
-            Push(&P, q1);
-            ncaminhos++;
+     		Ponto q1 = q;
+      		q1.y = q.y+1;
+		Push(&P, q1);
+            	ncaminhos++;
         }
        if(q.x+1 < lab->N && lab->mapa[q.x+1][q.y] == 0){ //teseu procura um caminho abaixo
-      			Ponto q1 = q;
-      			q1.x = q.x+1;
-            Push(&P, q1);
-            ncaminhos++;
+      		Ponto q1 = q;
+      		q1.x = q.x+1;
+        	Push(&P, q1);
+            	ncaminhos++;
         }
        if(q.y-1 > 0 && lab->mapa[q.x][q.y-1] == 0){ //teseu procura um caminho a esquerda
-      			Ponto q1 = q;
-      			q1.y = q.y-1;
-            Push(&P, q1);
-            ncaminhos++;
+      		Ponto q1 = q;
+      		q1.y = q.y-1;
+        	Push(&P, q1);
+        	ncaminhos++;
         }
        if(q.x-1 > 0 && lab->mapa[q.x-1][q.y] == 0){ //teseu procura um caminho acima
-      			Ponto q1 = q;
-      			q1.x = q.x-1;
-            Push(&P, q1);
-            ncaminhos++;
+      		Ponto q1 = q;
+      		q1.x = q.x-1;
+        	Push(&P, q1);
+        	ncaminhos++;
         }
         if(ncaminhos > 1){ //se for bifurcação marca o lugar pra visitar depois
-          Push(&hold, q);
+        	Push(&hold, q);
         }
-    		if(ncaminhos = 0){  //se encontrar um beco sem saída
+    	if(ncaminhos = 0){  //se encontrar um beco sem saída
           if(!(hold)){  //e não houver mais encruzilhadas pra visitar
-            freePilha(&hold);
-            freePilha(&P);
-      			return 0; //não há saída
-      		}
+        	freePilha(&hold);
+        	freePilha(&P);
+      		return 0; //não há saída
+      	  }
           while(P->coord.x != hold->coord.x || P->coord.y != hold->coord.y){
             Pop(&P); //enrola o fio de volta até a encruzilhada mais recente
           }
-          Pop(&hold); //desmarca a encruzilhada
+            Pop(&hold); //desmarca a encruzilhada
         }
     }
     while(P){
